@@ -25,10 +25,28 @@ fn get_nth_fibonacci(n: i32) -> i32 {
 }
 
 fn get_ordinal(num: i32) -> String {
-    match num {
-        1 => "1st".to_string(),
-        2 => "2nd".to_string(),
-        3 => "3rd".to_string(),
+    match num % 10 {
+        1 => {
+            if num == 11 {
+                "11th".to_string()
+            } else {
+                format!("{}st", num)
+            }
+        }
+        2 => {
+            if num == 12 {
+                "12th".to_string()
+            } else {
+                format!("{}nd", num)
+            }
+        }
+        3 => {
+            if num == 13 {
+                "13th".to_string()
+            } else {
+                format!("{}rd", num)
+            }
+        }
         _ => format!("{}th", num),
     }
 }
