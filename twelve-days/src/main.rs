@@ -32,29 +32,11 @@ fn main() {
     }
 }
 
-fn get_ordinal(num: i32) -> String {
-    match num % 10 {
-        1 => {
-            if num == 11 {
-                "11th".to_string()
-            } else {
-                format!("{}st", num)
-            }
-        }
-        2 => {
-            if num == 12 {
-                "12th".to_string()
-            } else {
-                format!("{}nd", num)
-            }
-        }
-        3 => {
-            if num == 13 {
-                "13th".to_string()
-            } else {
-                format!("{}rd", num)
-            }
-        }
-        _ => format!("{}th", num),
+fn get_ordinal(n: i32) -> String {
+    match (n % 10, n < 11 || n > 13) {
+        (1, true) => format!("{}st", n),
+        (2, true) => format!("{}nd", n),
+        (3, true) => format!("{}rd", n),
+        _ => format!("{}th", n),
     }
 }
