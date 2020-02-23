@@ -1,3 +1,5 @@
+use ordnl;
+
 fn main() {
     let gifts = [
         "a partridge in a pear tree",
@@ -17,7 +19,7 @@ fn main() {
     for i in 0..12 {
         println!(
             "On the {} day of Christmas my true love gave to me",
-            get_ordinal(i + 1)
+            ordnl::of_u32(i + 1)
         );
 
         for j in (0..(i + 1)).rev() {
@@ -29,14 +31,5 @@ fn main() {
                 _ => print!(", \n"),
             }
         }
-    }
-}
-
-fn get_ordinal(n: i32) -> String {
-    match (n % 10, n < 11 || n > 13) {
-        (1, true) => format!("{}st", n),
-        (2, true) => format!("{}nd", n),
-        (3, true) => format!("{}rd", n),
-        _ => format!("{}th", n),
     }
 }

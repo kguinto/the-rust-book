@@ -1,11 +1,13 @@
+use ordnl;
+
 fn main() {
-    let n: u32 = 4;
+    let n: u32 = 2;
     let phrase = String::from("foo bar baz ");
     let nth_word = get_nth_word(4, &phrase[..]);
 
     println!(
         "The {} word in \"{}\" is \"{}\"",
-        get_ordinal(n),
+        ordnl::of_u32(n),
         phrase,
         nth_word
     )
@@ -29,13 +31,4 @@ fn get_nth_word(n: u32, s: &str) -> &str {
     }
 
     ""
-}
-
-fn get_ordinal(n: u32) -> String {
-    match (n % 10, n < 11 || n > 13) {
-        (1, true) => format!("{}st", n),
-        (2, true) => format!("{}nd", n),
-        (3, true) => format!("{}rd", n),
-        _ => format!("{}th", n),
-    }
 }

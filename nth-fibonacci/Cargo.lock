@@ -3,3 +3,12 @@
 [[package]]
 name = "nth-fibonacci"
 version = "0.1.0"
+dependencies = [
+ "ordnl",
+]
+
+[[package]]
+name = "ordnl"
+version = "1.0.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "70553abc90e4906e37c5ecb04629021b5e925c30a68741c4958c7be5692be09f"

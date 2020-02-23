@@ -1,53 +1,43 @@
+use ordnl;
 use std::io::stdin;
 
 fn main() {
-    let mut n = 0;
-
-    println!("Enter an integer:");
-
-    read_int(&mut n);
+    let n = read_n();
 
     let nth_fib = get_nth_fibonacci(n);
 
     println!(
         "The {ordinal} fibonnaci number is {nth_fib}",
-        ordinal = get_ordinal(n),
+        ordinal = ordnl::of_u32(n),
         nth_fib = nth_fib
     )
 }
 
-fn get_nth_fibonacci(n: i32) -> i32 {
+fn get_nth_fibonacci(n: u32) -> u32 {
     match n {
         0 => 0,
         1 => 1,
         _ => get_nth_fibonacci(n - 1) + get_nth_fibonacci(n - 2),
     }
 }
-
-fn get_ordinal(n: i32) -> String {
-    match (n % 10, n < 11 || n > 13) {
-        (1, true) => format!("{}st", n),
-        (2, true) => format!("{}nd", n),
-        (3, true) => format!("{}rd", n),
-        _ => format!("{}th", n),
-    }
-}
-
-fn read_int(i: &mut i32) {
-    let mut str_input = String::new();
+fn read_n() -> u32 {
+    let mut str_input;
 
     loop {
+        println!("Enter an whole number: ");
+
+        str_input = String::new();
+
         stdin()
             .read_line(&mut str_input)
-            .expect("That's not a valid integer.");
+            .expect("That's not a valid whole number");
 
         match str_input.trim().parse() {
-            Ok(num) => {
-                *i = num;
-                break;
+            Ok(num) => return num,
+            Err(_) => {
+                println!("\n{} is not a valid whole number ", str_input.trim());
+                continue;
             }
-
-            Err(_) => continue,
         };
     }
 }
